@@ -24,10 +24,11 @@ Algorithm:
   using namespace std;
   
   int main(void) {
-    string grid[6][6];
+    char grid[6][6];
     int i,j;
     char ch='a';
     char CH='A';
+    char con_ch;
     
     //***************
     /*grid design*/
@@ -75,7 +76,7 @@ Algorithm:
     //**************************
     tank1r=1;tank2r=2;tank3r=3;tank4r=4;tank5r=5;
     
-    srand(time(NULL));
+    srand((unsigned)time(0));
     
     tank1c=rand()%5+1;
     tank2c=rand()%5+1;
@@ -99,7 +100,13 @@ Algorithm:
     do{
     min3c=rand()%5+1;
     }while(min3c==tank5c);
+
     
+    //***************
+    //Attack code
+    do{
+    
+        
     //*****************
     //Taking co-ordinate input.
     cout<<"Enter co-ordinate to launch a missile: "<<endl;
@@ -109,9 +116,7 @@ Algorithm:
     cout<<"Enter column sequence: ";
     cin>>ml_col;
     
-    //***************
-    //Attack code
-    do{
+    
     if(ml_row<1 || ml_row>5){
     cout<<"Missile target is out of hostile compound, you are disqualified as a dangerous missileman"<<endl;
     return -1;
@@ -126,48 +131,48 @@ Algorithm:
     //*******Tank hitting codes****
     if(ml_row==1 && ml_col==tank1c){
     tank_hit_count++;
-    grid[1][tank1c]='$';
+    grid[1][tank1c]='H';
     }
     
     if(ml_row==2 && ml_col==tank2c){
     tank_hit_count++;
-    grid[2][tank2c]='$';
+    grid[2][tank2c]='H';
     }
     
     if(ml_row==3 && ml_col==tank3c){
     tank_hit_count++;
-    grid[3][tank3c]='$';
+    grid[3][tank3c]='H';
     }
     
     if(ml_row==4 && ml_col==tank4c){
     tank_hit_count++;
-    grid[4][tank4c]='$';
+    grid[4][tank4c]='H';
     }
     
     if(ml_row==5 && ml_col==tank5c){
     tank_hit_count++;
-    grid[5][tank5c]='$';
+    grid[5][tank5c]='H';
     }
     
     //****mine hitting codes*****
-    if(ml_row==2 && ml_col==mine1c){
-    mine_hot_count++;
-    grid[2][mine1c]='*';
+    if(ml_row==2 && ml_col==min1c){
+    mine_hit_count++;
+    grid[2][min1c]='*';
     }
     
-    if(ml_row==4 && ml_col==mine2c){
-    mine_hot_count++;
-    grid[4][mine2c]='*';
+    if(ml_row==4 && ml_col==min2c){
+    mine_hit_count++;
+    grid[4][min2c]='*';
     }
     
-    if(ml_row==5 && ml_col==mine3c){
-    mine_hot_count++;
-    grid[5][mine3c]='*';
+    if(ml_row==5 && ml_col==min3c){
+    mine_hit_count++;
+    grid[5][min3c]='*';
     }
     
     else{
     miss_count++;
-    grid[ml_row][ml_count]='x';
+    grid[ml_row][ml_col]='x';
     }
     
     //tank hitting outputs********
@@ -181,19 +186,24 @@ Algorithm:
     //**mine hittin' output********
     if(mine_hit_count==1){}
     if(mine_hit_count==2){}
-  }
     if(mine_hit_count==3){}
     
+    //Attack track
+    for(i=0;i<6;i++){
+    for(j=0;j<6;j++){
+    cout<<grid[i][j]<<" ";
+    }
+    cout<<endl;
+    }
+    
+    cout<<"Press y to continue and n to exit: ";
+    cin>>con_ch;
+
+    }while(con_ch=='y');
     
     
     
-    
-    
-    }while();
-    
-    
-    
-    
+    /*Now i have to code each line distinctively for misses*/
     
     
     }

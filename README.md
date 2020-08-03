@@ -85,6 +85,8 @@ Algorithm:
     
     
     //**************************
+    //First tank and mine position design code
+    /*
     tank1r=1;tank2r=2;tank3r=3;tank4r=4;tank5r=5;
     
     srand((unsigned)time(0));
@@ -111,7 +113,66 @@ Algorithm:
     do{
     min3c=rand()%5+1;
     }while(min3c==tank5c);
-
+    
+    */
+    
+    //Second tank position design code
+    
+    srand(time(0));
+    
+    tank1r=rand()%5+1;
+    tank2r=rand()%5+1;
+    tank3r=rand()%5+1;
+    tank4r=rand()%5+1;
+    tank5r=rand()%5+1;
+    
+    tank1c=rand()%5+1;
+    grid[tank1r][tank1c]='t';
+    
+    do{
+    tank2c=rand()%5+1;
+    }while(grid[tank2r][tank2c]=='t');
+    grid[tank2r][tank2c]='t';
+    
+    do{
+    tank3c=rand()%5+1;
+    }while(grid[tank3r][tank3c]=='t');
+    grid[tank3r][tank3c]='t';
+    
+    do{
+    tank4c=rand()%5+1;
+    }while(grid[tank4r][tank4c]=='t');
+    grid[tank4r][tank4c]='t';
+    
+    do{
+    tank5c=rand()%5+1;
+    }while(grid[tank5r][tank5c]=='t');
+    grid[tank5r][tank5c]='t';
+    
+    //Second mine position design code
+    
+    min1r=2;min2r=4;min3r=5;
+    
+    do{
+    min1c=rand()%5+1;
+    }while(min1c==tank2c);
+    
+    do{
+    min2c=rand()%5+1;
+    }while(min2c==tank4c);
+    
+     
+    do{
+    min3c=rand()%5+1;
+    }while(min3c==tank5c);
+    
+    //Redisguising grid map
+    for(i=1;i<6;i++){
+    for(j=1;j<6;j++){
+    grid[i][j]='-';
+    }
+    }
+    
     
     //***************
     //Attack code
@@ -168,87 +229,87 @@ Algorithm:
     }
     
     //*******Tank hitting codes****
-    if(ml_row==1 && ml_col==tank1c){
+    if(ml_row==tank1r && ml_col==tank1c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
     }
     tank_hit_count++;
     miss_count--;
-    grid[1][tank1c]='$';
+    grid[tank1r][tank1c]='$';
     game_score+=50;
     tank_streak=1;
     miss_streak--;
     }
     
-    if(ml_row==2 && ml_col==tank2c){
+    if(ml_row==tank2r && ml_col==tank2c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
     }
     tank_hit_count++;
     miss_count--;
-    grid[2][tank2c]='$';
+    grid[tank2r][tank2c]='$';
     game_score+=50;
     tank_streak=1;
     miss_streak--;
     }
     
-    if(ml_row==3 && ml_col==tank3c){
+    if(ml_row==tank3r && ml_col==tank3c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
     }
     tank_hit_count++;
     miss_count--;
-    grid[3][tank3c]='$';
+    grid[tank3r][tank3c]='$';
     game_score+=50;
     tank_streak=1;
     miss_streak--;
     }
     
-    if(ml_row==4 && ml_col==tank4c){
+    if(ml_row==tank4r && ml_col==tank4c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
     }
     tank_hit_count++;
     miss_count--;
-    grid[4][tank4c]='$';
+    grid[tank4r][tank4c]='$';
     game_score+=50;
     tank_streak=1;
     miss_streak--;
     }
     
-    if(ml_row==5 && ml_col==tank5c){
+    if(ml_row==tank5r && ml_col==tank5c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
     }
     tank_hit_count++;
     miss_count--;
-    grid[5][tank5c]='$';
+    grid[tank5r][tank5c]='$';
     game_score+=50;
     tank_streak=1;
     miss_streak--;
     }
     
     //****mine hitting codes*****
-    if(ml_row==2 && ml_col==min1c){
+    if(ml_row==min1r && ml_col==min1c){
     mine_hit_count++;
-    grid[2][min1c]='*';
+    grid[min1r][min1c]='*';
     game_score-=30;
     }
     
-    if(ml_row==4 && ml_col==min2c){
+    if(ml_row==min2r && ml_col==min2c){
     mine_hit_count++;
-    grid[4][min2c]='*';
+    grid[min2r][min2c]='*';
     game_score-=30;
     }
     
-    if(ml_row==5 && ml_col==min3c){
+    if(ml_row==min3r && ml_col==min3c){
     mine_hit_count++;
-    grid[5][min3c]='*';
+    grid[min3r][min3c]='*';
     game_score-=30;
     }
     
@@ -287,8 +348,11 @@ Algorithm:
 
     }while(con_ch=='y');
     
-    /*Outputs to be done*/
-    //streaks done;
-    //Rules initiation to be done
+    /*TODOLIST:
+    1.Outputs
+    */
+    
+    
+    //BS_sub_five
     }
   

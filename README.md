@@ -29,10 +29,17 @@ Algorithm:
     char ch='a';
     char CH='A';
     char con_ch;
-    int Missile_count;
+    int Missile_count=0;
     int game_score=0;
-    int tank_streak;
-    int miss_streak;
+    int tank_streak=0;
+    int miss_streak=0;
+    
+    cout<<"Welcome to the field,soldier. Ready to guide outbound missiles? Here're the drills."<<endl;
+    cout<<"You're given the initial map below.Co-ordinate search and attack by passing positions. First, you enter the rows, and the columns. as directed."<<endl;
+    cout<<"If you hit a hostile tank, you'll score 50, and the hit will be shown in the map with a $ sign. if it's a miss. the sign will be an x."<<endl;
+    cout<<"No point subtraction for misses, unless it's 5 streak miss, that will cost 20 points. But if u hit two missiles at a streak, u get a FIFTY point bonus!"<<endl;
+    cout<<"Warnings are, three mines in the tankfield, each mine hit takes 30 points from you, so it's pretty much a thing to be careful of."<<endl;
+    cout<<"So, go out and find those five missiles, trooper! Let's hope you're the man for the job."<<endl;
     
     //***************
     /*grid design*/
@@ -155,9 +162,10 @@ Algorithm:
     miss_count++;
     tank_streak=0;
     miss_streak++;
-    if(miss_streak==10){
-    cout<<"Oh! No, it's a 10 streak miss!"<<endl;
+    if(miss_streak==5){
+    cout<<"Oh! No, it's a 5 streak miss!"<<endl;
     game_score-=20;    
+    }
     
     //*******Tank hitting codes****
     if(ml_row==1 && ml_col==tank1c){
@@ -241,7 +249,7 @@ Algorithm:
     if(ml_row==5 && ml_col==min3c){
     mine_hit_count++;
     grid[5][min3c]='*';
-    game-score-=30;
+    game_score-=30;
     }
     
     //tank hitting outputs********
@@ -279,6 +287,8 @@ Algorithm:
 
     }while(con_ch=='y');
     
-    
+    /*Outputs to be done*/
+    //streaks done;
+    //Rules initiation to be done
     }
   

@@ -29,6 +29,10 @@ Algorithm:
     char ch='a';
     char CH='A';
     char con_ch;
+    int Missile_count;
+    int game_score=0;
+    int tank_streak;
+    int miss_streak;
     
     //***************
     /*grid design*/
@@ -127,55 +131,121 @@ Algorithm:
     return -1;
     }
     
+    //******General hitting codes******
+    
+    //Roughing out prevs
+    if(grid[ml_row][ml_col]=='$'){
+    cout<<"You have already tried this co-ordinate, it was a hit."<<endl;
+    tank_hit_count--;
+    }
+    
+    if(grid[ml_row][ml_col]=='x'){
+    cout<<"You have already tried this co-ordinate, it was a miss."<<endl;
+    miss_count--;
+    }
+    
+    if(grid[ml_row][ml_col]=='*'){
+    cout<<"You have already tried this co-ordinate, it was a mine-spot."<<endl;
+    mine_hit_count--;
+    miss_count--;
+    }
+    
+    //Initiate altering gridmap
+    grid[ml_row][ml_col]='x';
+    miss_count++;
+    tank_streak=0;
+    miss_streak++;
+    if(miss_streak==10){
+    cout<<"Oh! No, it's a 10 streak miss!"<<endl;
+    game_score-=20;    
     
     //*******Tank hitting codes****
     if(ml_row==1 && ml_col==tank1c){
+    if(tank_streak==1){
+    cout<<"It's a streak hit!!!"<<endl;
+    game_score+=50;
+    }
     tank_hit_count++;
-    grid[1][tank1c]='H';
+    miss_count--;
+    grid[1][tank1c]='$';
+    game_score+=50;
+    tank_streak=1;
+    miss_streak--;
     }
     
     if(ml_row==2 && ml_col==tank2c){
+    if(tank_streak==1){
+    cout<<"It's a streak hit!!!"<<endl;
+    game_score+=50;
+    }
     tank_hit_count++;
-    grid[2][tank2c]='H';
+    miss_count--;
+    grid[2][tank2c]='$';
+    game_score+=50;
+    tank_streak=1;
+    miss_streak--;
     }
     
     if(ml_row==3 && ml_col==tank3c){
+    if(tank_streak==1){
+    cout<<"It's a streak hit!!!"<<endl;
+    game_score+=50;
+    }
     tank_hit_count++;
-    grid[3][tank3c]='H';
+    miss_count--;
+    grid[3][tank3c]='$';
+    game_score+=50;
+    tank_streak=1;
+    miss_streak--;
     }
     
     if(ml_row==4 && ml_col==tank4c){
+    if(tank_streak==1){
+    cout<<"It's a streak hit!!!"<<endl;
+    game_score+=50;
+    }
     tank_hit_count++;
-    grid[4][tank4c]='H';
+    miss_count--;
+    grid[4][tank4c]='$';
+    game_score+=50;
+    tank_streak=1;
+    miss_streak--;
     }
     
     if(ml_row==5 && ml_col==tank5c){
+    if(tank_streak==1){
+    cout<<"It's a streak hit!!!"<<endl;
+    game_score+=50;
+    }
     tank_hit_count++;
-    grid[5][tank5c]='H';
+    miss_count--;
+    grid[5][tank5c]='$';
+    game_score+=50;
+    tank_streak=1;
+    miss_streak--;
     }
     
     //****mine hitting codes*****
     if(ml_row==2 && ml_col==min1c){
     mine_hit_count++;
     grid[2][min1c]='*';
+    game_score-=30;
     }
     
     if(ml_row==4 && ml_col==min2c){
     mine_hit_count++;
     grid[4][min2c]='*';
+    game_score-=30;
     }
     
     if(ml_row==5 && ml_col==min3c){
     mine_hit_count++;
     grid[5][min3c]='*';
-    }
-    
-    else{
-    miss_count++;
-    grid[ml_row][ml_col]='x';
+    game-score-=30;
     }
     
     //tank hitting outputs********
+    //TODO
     if(tank_hit_count==1){}
     if(tank_hit_count==2){}
     if(tank_hit_count==3){}
@@ -184,6 +254,7 @@ Algorithm:
     
     
     //**mine hittin' output********
+    //TODO
     if(mine_hit_count==1){}
     if(mine_hit_count==2){}
     if(mine_hit_count==3){}
@@ -196,14 +267,17 @@ Algorithm:
     cout<<endl;
     }
     
+    Missile_count++;
+    
+    cout<<"Tank hit count: "<<tank_hit_count<<endl;
+    cout<<"Mine hit count: "<<mine_hit_count<<endl;
+    cout<<"Miss count: "<<miss_count<<endl;
+    cout<<"Number of missiles used: "<<Missile_count<<endl;
+    
     cout<<"Press y to continue and n to exit: ";
     cin>>con_ch;
 
     }while(con_ch=='y');
-    
-    
-    
-    /*Now i have to code each line distinctively for misses*/
     
     
     }

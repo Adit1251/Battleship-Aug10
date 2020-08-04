@@ -10,10 +10,13 @@ Algorithm:
 6.Count score:
   *Add 50 for each tank hit
   *Subtract 30 for each mine hit
-  *hit all mines, u're out of the game
+  *hit all mines, u're out of the game//TODO
   *+30 bonus point for hitting two tanks in a row
-  *-20 for hitting two mines in a row
-  *disquaification for hitting a missile out of hostile compoun
+  *-20 for hitting two mines in a row//TODO
+  *disquaification for hitting a missile out of hostile compound
+  *20 missiles alllowed initially
+  *1 missile cut out for 5 miss streak
+  *1 missile gifted for 2 tank hit streak;
 */
 
   #include <iostream>
@@ -33,13 +36,25 @@ Algorithm:
     int game_score=0;
     int tank_streak=0;
     int miss_streak=0;
+    int mine_streak=0;
+    int Missile_left=20;
+    char out_pos_row;
+    char out_pos_col;
     
+    //First initiating address.
+    /*
     cout<<"Welcome to the field,soldier. Ready to guide outbound missiles? Here're the drills."<<endl;
     cout<<"You're given the initial map below.Co-ordinate search and attack by passing positions. First, you enter the rows, and the columns. as directed."<<endl;
     cout<<"If you hit a hostile tank, you'll score 50, and the hit will be shown in the map with a $ sign. if it's a miss. the sign will be an x."<<endl;
     cout<<"No point subtraction for misses, unless it's 5 streak miss, that will cost 20 points. But if u hit two missiles at a streak, u get a FIFTY point bonus!"<<endl;
     cout<<"Warnings are, three mines in the tankfield, each mine hit takes 30 points from you, so it's pretty much a thing to be careful of."<<endl;
     cout<<"So, go out and find those five missiles, trooper! Let's hope you're the man for the job."<<endl;
+    */
+    
+    //Second initiating address
+    /*
+    
+    */
     
     //***************
     /*grid design*/
@@ -78,6 +93,11 @@ Algorithm:
     int min1c,min2c,min3c;
     
     int ml_row,ml_col;
+    /*
+    char in_pos_row;
+    char in_pos_col;
+    //To take input with chars, but that would be mire time consuming :(
+    */
     
     int tank_hit_count=0;
     int mine_hit_count=0;
@@ -151,22 +171,26 @@ Algorithm:
     
     //Second mine position design code
     
-    min1r=2;min2r=4;min3r=5;
+    min1r=rand()%5+1;
+    min2r=rand()%5+1;
+    min3r=rand()%5+1;
     
     do{
     min1c=rand()%5+1;
-    }while(min1c==tank2c);
+    }while(grid[min1r][min1c]=='t');
+    grid[min1r][min1c]='t';
     
     do{
     min2c=rand()%5+1;
-    }while(min2c==tank4c);
+    }while(grid[min2r][min2c]=='t');
+    grid[min2r][min2c]='t';
     
-     
     do{
-    min3c=rand()%5+1;
-    }while(min3c==tank5c);
-    
-    //Redisguising grid map
+    min2c=rand()%5+1;
+    }while(grid[min2r][min2c]=='t');
+    grid[min2r][min2c]='t';
+       
+    //Redisguising grid map********
     for(i=1;i<6;i++){
     for(j=1;j<6;j++){
     grid[i][j]='-';
@@ -226,6 +250,7 @@ Algorithm:
     if(miss_streak==5){
     cout<<"Oh! No, it's a 5 streak miss!"<<endl;
     game_score-=20;    
+    Missile_left--;
     }
     
     //*******Tank hitting codes****
@@ -233,65 +258,70 @@ Algorithm:
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
+    Missile_left++;
     }
     tank_hit_count++;
     miss_count--;
     grid[tank1r][tank1c]='$';
     game_score+=50;
     tank_streak=1;
-    miss_streak--;
+    miss_streak=0;
     }
     
     if(ml_row==tank2r && ml_col==tank2c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
+    Missile_left++;
     }
     tank_hit_count++;
     miss_count--;
     grid[tank2r][tank2c]='$';
     game_score+=50;
     tank_streak=1;
-    miss_streak--;
+    miss_streak=0;
     }
     
     if(ml_row==tank3r && ml_col==tank3c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
+    Missile_left++;
     }
     tank_hit_count++;
     miss_count--;
     grid[tank3r][tank3c]='$';
     game_score+=50;
     tank_streak=1;
-    miss_streak--;
+    miss_streak=0;
     }
     
     if(ml_row==tank4r && ml_col==tank4c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
+    Missile_left++;
     }
     tank_hit_count++;
     miss_count--;
     grid[tank4r][tank4c]='$';
     game_score+=50;
     tank_streak=1;
-    miss_streak--;
+    miss_streak=0;
     }
     
     if(ml_row==tank5r && ml_col==tank5c){
     if(tank_streak==1){
     cout<<"It's a streak hit!!!"<<endl;
     game_score+=50;
+    Missile_left++;
     }
     tank_hit_count++;
     miss_count--;
     grid[tank5r][tank5c]='$';
     game_score+=50;
     tank_streak=1;
-    miss_streak--;
+    miss_streak=0;
     }
     
     //****mine hitting codes*****
@@ -315,18 +345,34 @@ Algorithm:
     
     //tank hitting outputs********
     //TODO
-    if(tank_hit_count==1){}
-    if(tank_hit_count==2){}
-    if(tank_hit_count==3){}
-    if(tank_hit_count==4){}
-    if(tank_hit_count==5){}
+    if(tank_hit_count==1){
+    cout<<"Way to go,ranger. Show'em what you got next."<<endl;
+    }
+    if(tank_hit_count==2){
+    cout<<"You are some gunner.Two down, three to go."<<endl; 
+    }
+    if(tank_hit_count==3){
+    cout<<"Oppositon is pushed. We are halfway through them already."<<endl;
+    }
+    if(tank_hit_count==4){
+    cout<<"Fourth hit confirmed. I repeat, fourth hit confirmed."<<endl;
+    }
+    if(tank_hit_count==5){
+    cout<<"Hostiles terminated. You fought like a champ, gunner. It was a pleasure having you on the team."<<endl;
+    }
     
     
     //**mine hittin' output********
     //TODO
-    if(mine_hit_count==1){}
-    if(mine_hit_count==2){}
-    if(mine_hit_count==3){}
+    if(mine_hit_count==1){
+    cout<<"Attention,soldier. U've hit a mine. Be careful about your targets."<<endl;
+    }
+    if(mine_hit_count==2){
+    cout<<"Boom!That's like, the second mine you hit. May be, take a deep breath and start again?"<<endl;
+    }
+    if(mine_hit_count==3){
+    cout<<"You have set off all mines in the field. Not getting top score thid time. But you are still a great warrior."<<endl;
+    }
     
     //Attack track
     for(i=0;i<6;i++){
@@ -337,11 +383,19 @@ Algorithm:
     }
     
     Missile_count++;
+    Missile_left--;
     
+    /*
+    out_pos_row=ml_row+64;
+    out_pos_col=ml_col+96;
+    cout<<"Strike co-ordinates: "<<out_pos_row<<" "<<out_pos_col<<endl;
+    */
+  
     cout<<"Tank hit count: "<<tank_hit_count<<endl;
     cout<<"Mine hit count: "<<mine_hit_count<<endl;
     cout<<"Miss count: "<<miss_count<<endl;
     cout<<"Number of missiles used: "<<Missile_count<<endl;
+    cout<<"Number of missiles left: "<<Missile_left<<endl;
     
     cout<<"Press y to continue and n to exit: ";
     cin>>con_ch;
@@ -353,6 +407,6 @@ Algorithm:
     */
     
     
-    //BSA10_sub_five
+    //BSA10_sub_six
     }
   

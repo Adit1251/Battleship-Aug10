@@ -26,6 +26,13 @@ Algorithm:
   
   using namespace std;
   
+  void scoreout(int game_score)
+  {
+  cout<<"Final score: "<<game_score<<endl;
+  
+  return;
+  }
+  
   int main(void) {
     char grid[6][6];
     int i,j;
@@ -200,9 +207,9 @@ Algorithm:
     
     //***************
     //Attack code
+   
     do{
     
-        
     //*****************
     //Taking co-ordinate input.
     cout<<"Enter co-ordinate to launch a missile: "<<endl;
@@ -215,11 +222,13 @@ Algorithm:
     
     if(ml_row<1 || ml_row>5){
     cout<<"Missile target is out of hostile compound, you are disqualified as a dangerous missileman"<<endl;
+    scoreout(game_score);
     return -1;
     }
     
     if(ml_col<0 || ml_col>5){
     cout<<"Missile target is out of hostile compound, you are disqualified as a dangerous missileman"<<endl;
+    scoreout(gamescore);
     return -1;
     }
     
@@ -344,7 +353,7 @@ Algorithm:
     }
     
     //tank hitting outputs********
-    //TODO
+    /*
     if(tank_hit_count==1){
     cout<<"Way to go,ranger. Show'em what you got next."<<endl;
     }
@@ -360,10 +369,21 @@ Algorithm:
     if(tank_hit_count==5){
     cout<<"Hostiles terminated. You fought like a champ, gunner. It was a pleasure having you on the team."<<endl;
     }
+    */
+    
+    switch(tank_hit_count)
+    {
+    case 1:cout<<"Way to go,ranger. Show'em what you got next."<<endl; break;
+    case 2:cout<<"You are some gunner.Two down, three to go."<<endl; break;
+    case 3:cout<<"Oppositon is pushed. We are halfway through them already."<<endl;break;
+    case 4:cout<<"Fourth hit confirmed. I repeat, fourth hit confirmed."<<endl;break;
+    case 5:cout<<"Hostiles terminated. You fought like a champ, gunner. It was a pleasure having you on the team."<<endl;break;
+    }
+    
+    
     
     
     //**mine hittin' output********
-    //TODO
     if(mine_hit_count==1){
     cout<<"Attention,soldier. U've hit a mine. Be careful about your targets."<<endl;
     }
@@ -396,17 +416,23 @@ Algorithm:
     cout<<"Miss count: "<<miss_count<<endl;
     cout<<"Number of missiles used: "<<Missile_count<<endl;
     cout<<"Number of missiles left: "<<Missile_left<<endl;
+    cout<<"Current game score is: "<<game_score<<endl;
     
     cout<<"Press y to continue and n to exit: ";
     cin>>con_ch;
 
     }while(con_ch=='y');
     
+    scoreout(gamescore);
+    return 0;
+    
     /*TODOLIST:
     1.Outputs
     */
     
     
-    //BSA10_sub_six
+    //BSA10_sub_seven
     }
+    
+    
   

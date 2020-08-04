@@ -1,5 +1,3 @@
-# Battleship-Aug10
-
 /* 
 Algorithm:
 1.Create initial grid
@@ -228,7 +226,7 @@ Algorithm:
     
     if(ml_col<0 || ml_col>5){
     cout<<"Missile target is out of hostile compound, you are disqualified as a dangerous missileman"<<endl;
-    scoreout(gamescore);
+    scoreout(game_score);
     return -1;
     }
     
@@ -423,7 +421,7 @@ Algorithm:
 
     }while(con_ch=='y');
     
-    scoreout(gamescore);
+    scoreout(game_score);
     return 0;
     
     /*TODOLIST:
@@ -431,7 +429,7 @@ Algorithm:
     */
     
     
-    //BSA10_sub_seven
+    //BSA10_sub_eight
     }
     
     

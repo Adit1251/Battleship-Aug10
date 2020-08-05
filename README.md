@@ -254,11 +254,7 @@ Algorithm:
     miss_count++;
     tank_streak=0;
     miss_streak++;
-    if(miss_streak==5){
-    cout<<"Oh! No, it's a 5 streak miss!"<<endl;
-    game_score-=20;    
-    Missile_left--;
-    }
+    
     
     //*******Tank hitting codes****
     if(ml_row==tank1r && ml_col==tank1c){
@@ -369,6 +365,13 @@ Algorithm:
     }
     */
     
+    if(miss_streak==5){
+    cout<<"Oh! No, it's a 5 streak miss!"<<endl;
+    game_score-=20;    
+    Missile_left--;
+    miss_streak=0;
+    }
+    
     switch(tank_hit_count)
     {
     case 1:cout<<"Way to go,ranger. Show'em what you got next."<<endl; break;
@@ -415,6 +418,12 @@ Algorithm:
     cout<<"Number of missiles used: "<<Missile_count<<endl;
     cout<<"Number of missiles left: "<<Missile_left<<endl;
     cout<<"Current game score is: "<<game_score<<endl;
+    cout<<"Miss streak count: "<<miss_streak<<endl;
+    
+    if(Missile_left==0){
+    scoreout(game_score);
+    return 0;
+    }
     
     cout<<"Press y to continue and n to exit: ";
     cin>>con_ch;
@@ -429,7 +438,7 @@ Algorithm:
     */
     
     
-    //BSA10_sub_eight
+    //BSA10_sub_nine
     }
     
     

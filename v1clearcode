@@ -1,23 +1,4 @@
-/* 
-Algorithm:
-1.Create initial grid
-2.Design grid
-3.Initiate tank positions(5)
-4.Initiate mine positions(3)
-5.Take in hitting co-ordinates
-6.Count score:
-  *Add 50 for each tank hit
-  *Subtract 30 for each mine hit
-  *hit all mines, u're out of the game//TODO
-  *+30 bonus point for hitting two tanks in a row
-  *-20 for hitting two mines in a row//TODO
-  *disquaification for hitting a missile out of hostile compound
-  *20 missiles alllowed initially
-  *1 missile cut out for 5 miss streak
-  *1 missile gifted for 2 tank hit streak;
-*/
-
-  #include <iostream>
+ #include <iostream>
   #include <algorithm>
   #include <string>
   #include <cstring>
@@ -407,7 +388,7 @@ Algorithm:
     */
     
     
-    //BSA10_sub_elevan
+    //BSA10_sub_twelve
  
     }
     

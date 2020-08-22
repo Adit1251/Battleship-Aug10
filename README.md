@@ -236,17 +236,28 @@ Algorithm:
     if(grid[ml_row][ml_col]=='$'){
     cout<<"You have already tried this co-ordinate, it was a hit."<<endl;
     tank_hit_count--;
+    miss_count--;
+    Missile_count--;
+    Missile_left++;
+    game_score-=50;
     }
     
     if(grid[ml_row][ml_col]=='x'){
     cout<<"You have already tried this co-ordinate, it was a miss."<<endl;
     miss_count--;
+    Missile_count--;
+    Missile_left++;
+    miss_streak--;
     }
     
     if(grid[ml_row][ml_col]=='*'){
     cout<<"You have already tried this co-ordinate, it was a mine-spot."<<endl;
     mine_hit_count--;
     miss_count--;
+    Missile_count--;
+    Missile_left++;
+    game_score+=30;
+    miss_streak--;
     }
     
     //Initiate altering gridmap
@@ -438,7 +449,8 @@ Algorithm:
     */
     
     
-    //BSA10_sub_nine
+    //BSA10_sub_ten
+ 
     }
     
     

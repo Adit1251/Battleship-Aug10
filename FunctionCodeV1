@@ -223,7 +223,6 @@
     //Initiating gridmap altering**************
     grid[ml_row][ml_col]='x';
     miss_count++;
-    tank_streak=0;
     miss_streak++;
     
       
@@ -259,6 +258,12 @@
     grid[tank5r][tank5c]='$';
     }
     
+    if((ml_row!=tank1r && ml_col!=tank1c) || (ml_row!=tank2r && ml_col!=tank2c) || (ml_row!=tank3r && ml_col!=tank3c) || (ml_row!=tank4r && ml_col!=tank4c) || (ml_row!=tank5r && ml_col!=tank5c))
+    {
+    tank_streak=0;
+    }    
+
+       
     //***mine set off protocols*****
     if(ml_row==min1r && ml_col==min1c){
     mine_set_off_func(&mine_hit_count,&game_score);    
@@ -444,4 +449,4 @@
     }
     
   
-  //v1fc_sub_fourteen
+  //v1fc_sub_fifteen
